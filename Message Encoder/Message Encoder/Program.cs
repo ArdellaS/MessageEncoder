@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace Message_Encoder
@@ -19,8 +19,9 @@ namespace Message_Encoder
             Console.Write("Your encoded message is: ");
             for (int i = 0; i < bytes.Length; i += sizeof(int))
             {
-                double num = BitConverter.ToInt32(bytes, i) - 64;
-              Console.Write($"{num}-");
+                double num = BitConverter.ToInt32(bytes, i);
+                double codedNum = num - 64;
+              Console.Write($"{codedNum}-");
                 checkSum += num;                   
             }
 
