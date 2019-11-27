@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Message_Encoder
 {
@@ -6,28 +7,27 @@ namespace Message_Encoder
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the message you would like coded: ");
+            Console.WriteLine("What is your message? ");
             string input = Console.ReadLine().ToUpper();
-            Console.WriteLine(input);
-                      
-            System.Text.UTF32Encoding encoding = new System.Text.UTF32Encoding();
+            
+                     
+            UTF32Encoding encoding = new UTF32Encoding();
             byte[] bytes = encoding.GetBytes(input);
-
+            
+            double checkSum = 0.0;
+            
+            Console.Write("Your encoded message is: ");
             for (int i = 0; i < bytes.Length; i += sizeof(int))
             {
-                Console.WriteLine(BitConverter.ToInt32(bytes, i-64));
+                double num = BitConverter.ToInt32(bytes, i) - 64;
+              Console.Write($"{num}-");
+                checkSum += num;                   
             }
 
-
-            //string message = "Your encoded message is: " + Code(input);
-
-            double checkSum;
-
+            Console.WriteLine($"\nMessage checksum is: {checkSum}");
+            
+            
         }
-        public void Code(string input)
-        {
-
-        }
-
+       
     }
 }
