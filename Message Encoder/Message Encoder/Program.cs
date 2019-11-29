@@ -15,8 +15,8 @@ namespace Message_Encoder
             byte[] bytes = encoding.GetBytes(input);
             
             double checkSum = 0.0;
-            
-            Console.Write("Your encoded message is: ");
+            string message = "Your encoded message is: ";
+            Console.Write(message);
             for (int i = 0; i < bytes.Length; i += sizeof(int))
             {
                 double num = BitConverter.ToInt32(bytes, i);
